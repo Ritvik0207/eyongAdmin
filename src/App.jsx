@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -6,6 +7,16 @@ import AppRoutes from './routes';
 
 import './App.css';
 import { Toaster } from './components/ui/toaster';
+=======
+import { BrowserRouter } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { ROUTES } from "./constants/routes";
+import AppRoutes from "./routes";
+
+import "./App.css";
+import { Toaster } from "./components/ui/toaster";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -42,7 +53,7 @@ function App() {
         <AppRoutes />
         <Toaster />
       </BrowserRouter>
-      <ReactQueryDevtools initialIsOpen={false} position='bottom-right' />
+      <ReactQueryDevtools initialIsOpen={false} position="bottom-right" />
     </QueryClientProvider>
   );
 }

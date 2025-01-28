@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useParams, useNavigate, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
@@ -71,6 +72,29 @@ export function ShopDetail() {
       }
     }
   };
+=======
+import { useParams, useNavigate, Link } from "react-router-dom"
+import { Badge } from "@/components/ui/badge"
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card"
+import { Separator } from "@/components/ui/separator"
+import { 
+  ArrowLeft, Tag, MapPin, Calendar, Edit, Mail, Phone,
+  Facebook, Instagram, Twitter, Globe, Star 
+} from 'lucide-react'
+import { Loader } from "@/components/common/loader"
+import { useShopById } from "@/features/shop/hooks/useShop"
+import { CloudinaryConfig } from "/Cloudinary"
+
+export function ShopDetail() {
+  const { shopId } = useParams()
+  const navigate = useNavigate()
+  const { data: shop = [], isLoading, error } = useShopById(shopId)
+
+  if (isLoading) return <Loader />
+  if (error) return <div className="flex justify-center items-center h-screen text-destructive">Error loading shop: {error.message}</div>
+  if (!shop) return <div className="flex justify-center items-center h-screen">Shop not found</div>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
   return (
     <div className="container mx-auto px-4 py-6 space-y-8">
@@ -82,6 +106,7 @@ export function ShopDetail() {
           onClick={() => navigate(-1)}
           className="flex items-center gap-2 hover:bg-secondary"
         >
+<<<<<<< HEAD
           <ArrowLeft className="w-6 h-6" />
           <span className="text-lg">Back to Shops</span>
         </Button>
@@ -103,14 +128,31 @@ export function ShopDetail() {
             <Trash className="w-4 h-4" /> Delete Shop
           </Button>
         </div>
+=======
+          <ArrowLeft className="w-6 h-6" /> 
+          <span className="text-lg">Back to Shops</span>
+        </Button>
+        <Link 
+          to={`/dashboard/shops/${shopId}/edit`}
+          className={buttonVariants({ variant: "default" }) + " flex items-center gap-2"}
+        >
+          <Edit className="w-4 h-4" /> Edit Shop
+        </Link>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
       </div>
 
       {/* Banner Image */}
       <div className="relative w-full h-48 rounded-lg overflow-hidden bg-muted">
         {shop.bannerImage?.url ? (
+<<<<<<< HEAD
           <img
             src={`${CloudinaryConfig.CLOUDINARY_URL}/image/upload/${shop?.bannerImage?.url}`}
             alt={shop.bannerImage.altText || "Shop banner"}
+=======
+          <img 
+            src={`${CloudinaryConfig.CLOUDINARY_URL}/image/upload/${shop?.bannerImage?.url}`} 
+            alt={shop.bannerImage.altText || 'Shop banner'} 
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             className="w-full h-full object-cover"
           />
         ) : (
@@ -126,9 +168,15 @@ export function ShopDetail() {
           <CardHeader className="border-b">
             <div className="flex items-center gap-4">
               {shop.logo?.url ? (
+<<<<<<< HEAD
                 <img
                   src={`${CloudinaryConfig.CLOUDINARY_URL}/image/upload/${shop?.logo?.url}`}
                   alt={shop.logo.altText || "Shop logo"}
+=======
+                <img 
+                  src={`${CloudinaryConfig.CLOUDINARY_URL}/image/upload/${shop?.logo?.url}`}
+                  alt={shop.logo.altText || 'Shop logo'} 
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                   className="w-16 h-16 rounded-full object-cover"
                 />
               ) : (
@@ -141,8 +189,12 @@ export function ShopDetail() {
                 <div className="flex items-center gap-2 mt-1">
                   <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
                   <span className="text-sm">
+<<<<<<< HEAD
                     {shop.ratings.averageRating.toFixed(1)} (
                     {shop.ratings.totalReviews} reviews)
+=======
+                    {shop.ratings.averageRating.toFixed(1)} ({shop.ratings.totalReviews} reviews)
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                   </span>
                 </div>
               </div>
@@ -151,24 +203,36 @@ export function ShopDetail() {
           <CardContent className="space-y-4 pt-6">
             <div className="flex flex-col gap-2">
               <span className="text-sm text-muted-foreground">Description</span>
+<<<<<<< HEAD
               <p className="font-medium text-card-foreground">
                 {shop.description}
               </p>
+=======
+              <p className="font-medium text-card-foreground">{shop.description}</p>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             </div>
             <Separator />
             <div className="flex justify-between items-center">
               <span className="text-sm text-muted-foreground">Status</span>
+<<<<<<< HEAD
               <Badge
                 variant={shop.status === "active" ? "success" : "destructive"}
               >
+=======
+              <Badge variant={shop.status === 'active' ? "success" : "destructive"}>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 {shop.status.charAt(0).toUpperCase() + shop.status.slice(1)}
               </Badge>
             </div>
             <Separator />
             <div className="space-y-2">
+<<<<<<< HEAD
               <span className="text-sm text-muted-foreground">
                 Contact Information
               </span>
+=======
+              <span className="text-sm text-muted-foreground">Contact Information</span>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               <div className="space-y-2">
                 <div className="flex items-center gap-2">
                   <Mail className="w-4 h-4 text-muted-foreground" />
@@ -182,6 +246,7 @@ export function ShopDetail() {
             </div>
             <Separator />
             <div className="space-y-2">
+<<<<<<< HEAD
               <span className="text-sm text-muted-foreground">
                 Social Media
               </span>
@@ -192,33 +257,51 @@ export function ShopDetail() {
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+=======
+              <span className="text-sm text-muted-foreground">Social Media</span>
+              <div className="flex gap-4">
+                {shop.socialMedia?.facebook && (
+                  <a href={shop.socialMedia.facebook} target="_blank" rel="noopener noreferrer">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                     <Facebook className="w-5 h-5 text-blue-600" />
                   </a>
                 )}
                 {shop.socialMedia?.instagram && (
+<<<<<<< HEAD
                   <a
                     href={shop.socialMedia.instagram}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+=======
+                  <a href={shop.socialMedia.instagram} target="_blank" rel="noopener noreferrer">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                     <Instagram className="w-5 h-5 text-pink-600" />
                   </a>
                 )}
                 {shop.socialMedia?.twitter && (
+<<<<<<< HEAD
                   <a
                     href={shop.socialMedia.twitter}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+=======
+                  <a href={shop.socialMedia.twitter} target="_blank" rel="noopener noreferrer">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                     <Twitter className="w-5 h-5 text-blue-400" />
                   </a>
                 )}
                 {shop.socialMedia?.website && (
+<<<<<<< HEAD
                   <a
                     href={shop.socialMedia.website}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
+=======
+                  <a href={shop.socialMedia.website} target="_blank" rel="noopener noreferrer">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                     <Globe className="w-5 h-5 text-gray-600" />
                   </a>
                 )}
@@ -256,9 +339,13 @@ export function ShopDetail() {
             <div className="space-y-4">
               <div className="flex justify-between items-center">
                 <span className="text-sm text-muted-foreground">Street</span>
+<<<<<<< HEAD
                 <span className="font-medium text-right">
                   {shop.address.street}
                 </span>
+=======
+                <span className="font-medium text-right">{shop.address.street}</span>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               </div>
               <Separator />
               <div className="flex justify-between items-center">
@@ -285,7 +372,14 @@ export function ShopDetail() {
         </Card>
       </div>
     </div>
+<<<<<<< HEAD
   );
 }
 
 export default ShopDetail;
+=======
+  )
+}
+
+export default ShopDetail
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d

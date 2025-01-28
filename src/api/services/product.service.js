@@ -48,6 +48,7 @@ export const productService = {
   },
 
   getProductBySellerId: async (sellerId) => {
+<<<<<<< HEAD
     try {
       const response = await Axios.get(
         API_ENDPOINTS.products.getProductBySellerId(sellerId)
@@ -66,4 +67,9 @@ export const productService = {
       }
     }
   },
+=======
+    const response = await Axios.get(API_ENDPOINTS.products.getProductBySellerId(sellerId));
+    return response.data;
+  }
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 };

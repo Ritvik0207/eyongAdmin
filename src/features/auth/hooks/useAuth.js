@@ -66,6 +66,7 @@ export const useSignup = () => {
 };
 
 export const useLogout = () => {
+<<<<<<< HEAD
   const queryClient = useQueryClient();
   const { logout } = useAuthenticationStore();
   const navigate = useNavigate();
@@ -81,3 +82,21 @@ export const useLogout = () => {
     },
   });
 };
+=======
+    const queryClient = useQueryClient();
+    const { logout } = useAuthenticationStore();
+    const navigate = useNavigate();
+    return useMutation({
+        mutationFn: authService.logout,
+        onSuccess: () => {
+            logout();
+            queryClient.clear();
+            console.log("successfully logged out"); 
+            navigate(ROUTES.LOGIN)       
+        },
+        onError() {
+            console.log("error while logging out");
+        },
+    });
+};
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d

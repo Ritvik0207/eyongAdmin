@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use client';
 'use client';
 
@@ -6,6 +7,16 @@ import { Badge } from '@/components/ui/badge';
 import { Button, buttonVariants } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+=======
+"use client";
+"use client";
+
+import { useParams, useNavigate, Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import { Button, buttonVariants } from "@/components/ui/button";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import {
   ArrowLeft,
   Tag,
@@ -16,6 +27,7 @@ import {
   Edit,
   Trash,
   Trash2,
+<<<<<<< HEAD
 } from 'lucide-react';
 import {
   useGetAllCategories,
@@ -26,6 +38,18 @@ import { ROUTES } from '@/constants/routes';
 import { useEffect } from 'react';
 import { toast } from '@/hooks/use-toast';
 import { useDeleteSubCategory } from '@/features/subcategories/hooks/useSubcategory';
+=======
+} from "lucide-react";
+import {
+  useGetAllCategories,
+  useDeleteCategory,
+} from "@/features/categories/hooks/useCategory";
+import { Loader } from "@/components/common/loader";
+import { ROUTES } from "@/constants/routes";
+import { useEffect } from "react";
+import { toast } from "@/hooks/use-toast";
+import { useDeleteSubCategory } from "@/features/subcategories/hooks/useSubcategory";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
 export function CategoryDetail() {
   const { categoryId } = useParams();
@@ -44,15 +68,24 @@ export function CategoryDetail() {
   }, [categoryId, refetch]);
 
   const navigateToAddSubCategory = () => {
+<<<<<<< HEAD
     navigate(`${ROUTES.ADD_SUBCATEGORY.replace(':categoryId', categoryId)}`);
   };
 
   const handleDeleteCategory = async () => {
     if (window.confirm('Are you sure you want to delete this category?')) {
+=======
+    navigate(ROUTES.ADD_SUBCATEGORY.replace(":categoryId", categoryId));
+  };
+
+  const handleDeleteCategory = async () => {
+    if (window.confirm("Are you sure you want to delete this category?")) {
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
       try {
         const response = await deleteCategory(categoryId);
         if (response.success) {
           toast({
+<<<<<<< HEAD
             title: 'Success',
             description: 'Category deleted successfully',
           });
@@ -70,23 +103,52 @@ export function CategoryDetail() {
           title: 'Error',
           description: 'An error occurred while deleting the category',
           variant: 'destructive',
+=======
+            title: "Success",
+            description: "Category deleted successfully",
+          });
+          navigate(ROUTES.ALLCATEGORIES);
+        } else {
+          toast({
+            title: "Error",
+            description: response?.message || "Failed to delete category",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error("Failed to delete category:", error);
+        toast({
+          title: "Error",
+          description: "An error occurred while deleting the category",
+          variant: "destructive",
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
         });
       }
     }
   };
 
   const handleDeleteSubCategory = async (subCategoryId) => {
+<<<<<<< HEAD
     if (window.confirm('Are you sure you want to delete this subcategory?')) {
+=======
+    if (window.confirm("Are you sure you want to delete this subcategory?")) {
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
       try {
         const response = await deleteSubCategory(subCategoryId);
         if (response.success) {
           toast({
+<<<<<<< HEAD
             title: 'Success',
             description: 'Subcategory deleted successfully',
+=======
+            title: "Success",
+            description: "Subcategory deleted successfully",
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
           });
           refetch();
         } else {
           toast({
+<<<<<<< HEAD
             title: 'Error',
             description: response?.message || 'Failed to delete subcategory',
             variant: 'destructive',
@@ -98,6 +160,19 @@ export function CategoryDetail() {
           title: 'Error',
           description: 'An error occurred while deleting the subcategory',
           variant: 'destructive',
+=======
+            title: "Error",
+            description: response?.message || "Failed to delete subcategory",
+            variant: "destructive",
+          });
+        }
+      } catch (error) {
+        console.error("Failed to delete subcategory:", error);
+        toast({
+          title: "Error",
+          description: "An error occurred while deleting the subcategory",
+          variant: "destructive",
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
         });
       }
     }
@@ -106,7 +181,11 @@ export function CategoryDetail() {
   if (isLoading) return <Loader />;
   if (error)
     return (
+<<<<<<< HEAD
       <div className='flex justify-center items-center h-screen text-destructive'>
+=======
+      <div className="flex justify-center items-center h-screen text-destructive">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
         Error loading category: {error.message}
       </div>
     );
@@ -115,12 +194,17 @@ export function CategoryDetail() {
 
   if (!category)
     return (
+<<<<<<< HEAD
       <div className='flex justify-center items-center h-screen'>
+=======
+      <div className="flex justify-center items-center h-screen">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
         Category not found
       </div>
     );
 
   return (
+<<<<<<< HEAD
     <div className='container mx-auto px-4 py-2 space-y-8'>
       <div className='flex justify-between items-center'>
         <Button
@@ -148,10 +232,40 @@ export function CategoryDetail() {
             className='flex items-center gap-2'
           >
             <Trash className='w-4 h-4' /> Delete Category
+=======
+    <div className="container mx-auto px-4 py-2 space-y-8">
+      <div className="flex justify-between items-center">
+        <Button
+          variant="ghost"
+          size="sm"
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2"
+        >
+          <ArrowLeft className="w-8 h-8" />{" "}
+          <span className="text-lg">Back to Categories</span>
+        </Button>
+        <div className="flex gap-2 items-center">
+          <Link
+            to={`/dashboard/categories/${categoryId}/edit`}
+            className={
+              buttonVariants({ variant: "default" }) +
+              " flex items-center gap-2"
+            }
+          >
+            <Edit className="w-4 h-4" /> Edit Category
+          </Link>
+          <Button
+            variant="destructive"
+            onClick={handleDeleteCategory}
+            className="flex items-center gap-2"
+          >
+            <Trash className="w-4 h-4" /> Delete Category
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
           </Button>
         </div>
       </div>
 
+<<<<<<< HEAD
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-8'>
         <Card className='drop-shadow-2xl shadow-2xl'>
           <CardHeader>
@@ -180,10 +294,41 @@ export function CategoryDetail() {
               <span className='text-muted-foreground'>Products Count</span>
               <Badge variant='outline' className='flex items-center gap-1'>
                 <Package className='w-3 h-3' />
+=======
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <Card className="drop-shadow-2xl shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-2xl flex items-center gap-4">
+              <Tag className="w-6 h-6" />
+              {category.name}
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="space-y-4">
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Description</span>
+              <span className="font-medium">{category.description}</span>
+            </div>
+            <Separator />
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Category ID</span>
+              <span className="font-medium">{category._id}</span>
+            </div>
+            <Separator />
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Gender</span>
+              <Badge variant="secondary">{category.gender}</Badge>
+            </div>
+            <Separator />
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Products Count</span>
+              <Badge variant="outline" className="flex items-center gap-1">
+                <Package className="w-3 h-3" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 {category.productsCount}
               </Badge>
             </div>
             <Separator />
+<<<<<<< HEAD
             <div className='flex justify-between items-center'>
               <span className='text-muted-foreground'>For Kids</span>
               <Badge
@@ -203,12 +348,38 @@ export function CategoryDetail() {
             <div className='flex items-center justify-between'>
               <div className='flex items-center gap-3'>
                 <Calendar className='w-5 h-5 text-muted-foreground' />
+=======
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">For Kids</span>
+              <Badge
+                variant={category.isProductForKids ? "default" : "secondary"}
+              >
+                {category.isProductForKids ? "Yes" : "No"}
+              </Badge>
+            </div>
+            <Separator />
+            <div className="flex justify-between items-center">
+              <span className="text-muted-foreground">Status</span>
+              <Badge variant={category.isActive ? "success" : "destructive"}>
+                {category.isActive ? "Active" : "Inactive"}
+              </Badge>
+            </div>
+            <Separator />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <Calendar className="w-5 h-5 text-muted-foreground" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 <span>
                   Created: {new Date(category.createdAt).toLocaleDateString()}
                 </span>
               </div>
+<<<<<<< HEAD
               <div className='flex items-center gap-3'>
                 <Calendar className='w-5 h-5 text-muted-foreground' />
+=======
+              <div className="flex items-center gap-3">
+                <Calendar className="w-5 h-5 text-muted-foreground" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 <span>
                   Updated: {new Date(category.updatedAt).toLocaleDateString()}
                 </span>
@@ -218,14 +389,22 @@ export function CategoryDetail() {
         </Card>
 
         {/* Subcategories Card */}
+<<<<<<< HEAD
         <Card className='drop-shadow-2xl shadow-2xl'>
           <CardHeader>
             <CardTitle className='text-2xl flex items-center gap-2'>
               <Layers className='w-6 h-6' />
+=======
+        <Card className="drop-shadow-2xl shadow-2xl">
+          <CardHeader>
+            <CardTitle className="text-2xl flex items-center gap-2">
+              <Layers className="w-6 h-6" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               Subcategories
             </CardTitle>
           </CardHeader>
           <CardContent>
+<<<<<<< HEAD
             <div className='space-y-6'>
               {category.subCategories.map((subCategory) => (
                 <div key={subCategory._id} className='space-y-2'>
@@ -249,10 +428,36 @@ export function CategoryDetail() {
                       </Link>
                       <Trash2
                         className='w-4 h-4 cursor-pointer text-destructive'
+=======
+            <div className="space-y-6">
+              {category.subCategories.map((subCategory) => (
+                <div key={subCategory._id} className="space-y-2">
+                  <div className="flex items-center justify-between">
+                    <span className="font-medium">
+                      {subCategory.subCategoryName}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <Link
+                        to={ROUTES.EDIT_SUBCATEGORY.replace(
+                          ":categoryId",
+                          category._id
+                        ).replace(":subCategoryId", subCategory._id)}
+                        className={
+                          buttonVariants({ variant: "link" }) +
+                          "flex items-center gap-2"
+                        }
+                      >
+                        <Edit className="w-2 h-2" />
+                        Edit
+                      </Link>
+                      <Trash2
+                        className="w-4 h-4 cursor-pointer text-destructive"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                         onClick={() => handleDeleteSubCategory(subCategory._id)}
                       />
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div className='flex items-center gap-2 text-sm text-muted-foreground'>
                     <Hash className='w-4 h-4' />
                     {subCategory.keywords.join(', ')}
@@ -268,6 +473,23 @@ export function CategoryDetail() {
                   <div className='flex items-center gap-2 text-xs text-muted-foreground'>
                     <Calendar className='w-3 h-3' />
                     Created:{' '}
+=======
+                  <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                    <Hash className="w-4 h-4" />
+                    {subCategory.keywords.join(", ")}
+                  </div>
+                  <div className="flex items-center justify-between text-sm">
+                    <span>ID: {subCategory._id}</span>
+                    <Badge
+                      variant={subCategory.isActive ? "success" : "destructive"}
+                    >
+                      {subCategory.isActive ? "Active" : "Inactive"}
+                    </Badge>
+                  </div>
+                  <div className="flex items-center gap-2 text-xs text-muted-foreground">
+                    <Calendar className="w-3 h-3" />
+                    Created:{" "}
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                     {new Date(subCategory.createdAt).toLocaleDateString()}
                   </div>
                   <Separator />

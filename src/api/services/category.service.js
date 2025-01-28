@@ -23,4 +23,8 @@ export const categoryServices = {
     );
     return response.data;
   },
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d

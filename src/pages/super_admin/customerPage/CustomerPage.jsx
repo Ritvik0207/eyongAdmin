@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+=======
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import {
   Table,
   TableBody,
@@ -7,10 +12,17 @@ import {
   TableHead,
   TableHeader,
   TableRow,
+<<<<<<< HEAD
 } from '@/components/ui/table';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ChevronDown, ChevronUp, Eye } from 'lucide-react';
+=======
+} from "@/components/ui/table";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { ChevronDown, ChevronUp, Eye } from "lucide-react";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import {
   flexRender,
   getCoreRowModel,
@@ -18,19 +30,30 @@ import {
   getPaginationRowModel,
   getSortedRowModel,
   useReactTable,
+<<<<<<< HEAD
 } from '@tanstack/react-table';
 import { useGetAllCustomers } from '@/features/customer/hooks/useCustomer';
 import { Loader } from '@/components/common/loader';
+=======
+} from "@tanstack/react-table";
+import { useGetAllCustomers } from "@/features/customer/hooks/useCustomer";
+import { Loader } from "@/components/common/loader";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
 export function CustomerPage() {
   const navigate = useNavigate();
   const { data: customers = [], isLoading, error } = useGetAllCustomers();
   const [sorting, setSorting] = useState([]);
+<<<<<<< HEAD
   const [globalFilter, setGlobalFilter] = useState('');
+=======
+  const [globalFilter, setGlobalFilter] = useState("");
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
   // Columns for the table
   const columns = [
     {
+<<<<<<< HEAD
       accessorKey: '_id',
       header: 'Customer ID',
       cell: ({ row }) => <div className='font-medium'>{row.original._id}</div>,
@@ -76,12 +99,59 @@ export function CustomerPage() {
           variant='ghost'
           size='sm'
           className='flex items-center gap-2'
+=======
+      accessorKey: "_id",
+      header: "Customer ID",
+      cell: ({ row }) => <div className="font-medium">{row.original._id}</div>,
+    },
+    {
+      accessorKey: "userName",
+      header: "Name",
+    },
+    {
+      accessorKey: "email",
+      header: "Email",
+      cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+    },
+    {
+      accessorKey: "phone",
+      header: "Phone",
+      cell: ({ row }) => row.original.phone || "N/A",
+    },
+    {
+      accessorKey: "address",
+      header: "Default Address",
+      cell: ({ row }) => {
+        const defaultAddress = row.original.address.find((addr) => addr.isDefault);
+        return defaultAddress
+          ? `${defaultAddress.address}, ${defaultAddress.district}, ${defaultAddress.state} - ${defaultAddress.pincode}`
+          : "No address";
+      },
+    },
+    {
+      accessorKey: "cart",
+      header: "Cart Items",
+      cell: ({ row }) => row.original.cart?.length || 0,
+    },
+    {
+      id: "actions",
+      header: "Actions",
+      cell: ({ row }) => (
+        <Button
+          variant="ghost"
+          size="sm"
+          className="flex items-center gap-2"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
           onClick={(e) => {
             e.stopPropagation(); // Prevent event bubbling
             navigate(`/dashboard/customers/${row.original._id}`);
           }}
         >
+<<<<<<< HEAD
           <Eye className='w-4 h-4' />
+=======
+          <Eye className="w-4 h-4" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
           View
         </Button>
       ),
@@ -104,16 +174,21 @@ export function CustomerPage() {
   });
 
   if (isLoading) return <Loader />;
+<<<<<<< HEAD
   if (error)
     return (
       <div className='text-red-500'>
         Error loading customers: {error.message}
       </div>
     );
+=======
+  if (error) return <div className="text-red-500">Error loading customers: {error.message}</div>;
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
   const filteredRows = table.getRowModel().rows;
 
   return (
+<<<<<<< HEAD
     <div className='space-y-4'>
       <div className='flex flex-col sm:flex-row items-center justify-between gap-4'>
         <h1 className='text-xl font-semibold'>All Customers</h1>
@@ -122,10 +197,21 @@ export function CustomerPage() {
           value={globalFilter}
           onChange={(e) => setGlobalFilter(e.target.value)}
           className='max-w-sm'
+=======
+    <div className="space-y-4">
+      <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <h1 className="text-xl font-semibold">All Customers</h1>
+        <Input
+          placeholder="Search customers..."
+          value={globalFilter}
+          onChange={(e) => setGlobalFilter(e.target.value)}
+          className="max-w-sm"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
         />
       </div>
 
       {filteredRows.length === 0 ? (
+<<<<<<< HEAD
         <div className='text-center py-4'>No customers found</div>
       ) : (
         <>
@@ -157,6 +243,27 @@ export function CustomerPage() {
                   }
                 >
                   <Eye className='w-4 h-4' />
+=======
+        <div className="text-center py-4">No customers found</div>
+      ) : (
+        <>
+          {/* Mobile view */}
+          <div className="md:hidden space-y-4">
+            {filteredRows.map((row) => (
+              <div key={row.id} className="bg-white rounded-lg shadow-md p-4">
+                <h3 className="font-semibold text-lg mb-2">{row.original.userName}</h3>
+                <p className="text-sm text-gray-600 mb-1">ID: {row.original._id}</p>
+                <p className="text-sm text-gray-600 mb-1">{row.original.email}</p>
+                <p className="text-sm text-gray-600 mb-1">Phone: {row.original.phone || "N/A"}</p>
+                <p className="text-sm text-gray-600 mb-1">Cart Items: {row.original.cart?.length || 0}</p>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="flex items-center gap-2 mt-2"
+                  onClick={() => navigate(`/dashboard/customers/${row.original._id}`)}
+                >
+                  <Eye className="w-4 h-4" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                   View
                 </Button>
               </div>
@@ -164,8 +271,13 @@ export function CustomerPage() {
           </div>
 
           {/* Desktop view */}
+<<<<<<< HEAD
           <div className='rounded-md border shadow-md overflow-hidden hidden md:block'>
             <div className='overflow-x-auto custom-scrollbar'>
+=======
+          <div className="rounded-md border shadow-md overflow-hidden hidden md:block">
+            <div className="overflow-x-auto custom-scrollbar">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               <Table>
                 <TableHeader>
                   {table.getHeaderGroups().map((headerGroup) => (
@@ -176,6 +288,7 @@ export function CustomerPage() {
                             <div
                               className={
                                 header.column.getCanSort()
+<<<<<<< HEAD
                                   ? 'cursor-pointer select-none flex items-center gap-2'
                                   : ''
                               }
@@ -191,6 +304,16 @@ export function CustomerPage() {
                               {header.column.getIsSorted() === 'desc' && (
                                 <ChevronDown className='w-4 h-4' />
                               )}
+=======
+                                  ? "cursor-pointer select-none flex items-center gap-2"
+                                  : ""
+                              }
+                              onClick={header.column.getToggleSortingHandler()}
+                            >
+                              {flexRender(header.column.columnDef.header, header.getContext())}
+                              {header.column.getIsSorted() === "asc" && <ChevronUp className="w-4 h-4" />}
+                              {header.column.getIsSorted() === "desc" && <ChevronDown className="w-4 h-4" />}
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                             </div>
                           )}
                         </TableHead>
@@ -200,6 +323,7 @@ export function CustomerPage() {
                 </TableHeader>
                 <TableBody>
                   {filteredRows.map((row) => (
+<<<<<<< HEAD
                     <TableRow key={row.id} className='hover:bg-gray-50'>
                       {row.getVisibleCells().map((cell) => (
                         <TableCell key={cell.id}>
@@ -207,6 +331,12 @@ export function CustomerPage() {
                             cell.column.columnDef.cell,
                             cell.getContext()
                           )}
+=======
+                    <TableRow key={row.id} className="hover:bg-gray-50">
+                      {row.getVisibleCells().map((cell) => (
+                        <TableCell key={cell.id}>
+                          {flexRender(cell.column.columnDef.cell, cell.getContext())}
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                         </TableCell>
                       ))}
                     </TableRow>
@@ -218,6 +348,7 @@ export function CustomerPage() {
         </>
       )}
 
+<<<<<<< HEAD
       <div className='flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-2 py-4'>
         <div className='flex-1 text-sm text-muted-foreground text-center sm:text-left'>
           Showing {filteredRows.length} of{' '}
@@ -227,14 +358,29 @@ export function CustomerPage() {
           <Button
             variant='outline'
             size='sm'
+=======
+      <div className="flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0 sm:space-x-2 py-4">
+        <div className="flex-1 text-sm text-muted-foreground text-center sm:text-left">
+          Showing {filteredRows.length} of {table.getFilteredRowModel().rows.length} customers
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             onClick={() => table.previousPage()}
             disabled={!table.getCanPreviousPage()}
           >
             Previous
           </Button>
           <Button
+<<<<<<< HEAD
             variant='outline'
             size='sm'
+=======
+            variant="outline"
+            size="sm"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             onClick={() => table.nextPage()}
             disabled={!table.getCanNextPage()}
           >

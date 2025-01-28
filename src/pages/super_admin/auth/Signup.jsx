@@ -1,5 +1,9 @@
 import { Checkbox } from "@/components/ui/checkbox";
+<<<<<<< HEAD
 import { motion, AnimatePresence } from "framer-motion";
+=======
+import { motion } from "framer-motion";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../constants/routes";
@@ -29,7 +33,10 @@ const Signup = () => {
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [validationErrors, setValidationErrors] = useState({});
   const { mutate: signup, isLoading, isError, error } = useSignup();
+<<<<<<< HEAD
   const [showPassword, setShowPassword] = useState(false);
+=======
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
   const validateForm = () => {
     try {
@@ -57,6 +64,7 @@ const Signup = () => {
     }
   };
 
+<<<<<<< HEAD
   const shouldShowPasswordRequirements = () => {
     if (!password) return false;
     return !(
@@ -88,6 +96,8 @@ const Signup = () => {
       }
     }
   };
+=======
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
@@ -97,7 +107,11 @@ const Signup = () => {
   const errorMessage = error?.response?.data?.message || error?.message;
 
   return (
+<<<<<<< HEAD
     <div className="min-h-screen bg-gradient-to-br from-white to-gray-400 flex items-center justify-center p-2">
+=======
+    <div className="min-h-screen bg-gradient-to-br from-purple-600 to-blue-500 flex items-center justify-center p-2">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -135,11 +149,17 @@ const Signup = () => {
               whileFocus={{ scale: 1.01 }}
               type="text"
               value={userName}
+<<<<<<< HEAD
               onChange={(e) =>
                 handleInputChange("userName", e.target.value, setUserName)
               }
               required
               className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+=======
+              onChange={(e) => setUserName(e.target.value)}
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               placeholder="Enter your username"
             />
             {validationErrors.userName && (
@@ -161,11 +181,17 @@ const Signup = () => {
               whileFocus={{ scale: 1.01 }}
               type="email"
               value={email}
+<<<<<<< HEAD
               onChange={(e) =>
                 handleInputChange("email", e.target.value, setEmail)
               }
               required
               className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+=======
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               placeholder="Enter your email"
             />
             {validationErrors.email && (
@@ -187,11 +213,17 @@ const Signup = () => {
               whileFocus={{ scale: 1.01 }}
               type="tel"
               value={phone}
+<<<<<<< HEAD
               onChange={(e) =>
                 handleInputChange("phone", e.target.value, setPhone)
               }
               required
               className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-black focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+=======
+              onChange={(e) => setPhone(e.target.value)}
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               placeholder="Enter your phone number"
             />
             {validationErrors.phone && (
@@ -208,6 +240,7 @@ const Signup = () => {
             >
               Password
             </label>
+<<<<<<< HEAD
             <div className="relative">
               <motion.input
                 id="password"
@@ -348,6 +381,18 @@ const Signup = () => {
                 </motion.div>
               )}
             </AnimatePresence>
+=======
+            <motion.input
+              id="password"
+              whileFocus={{ scale: 1.01 }}
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-3 py-2 rounded-md border border-gray-300 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all duration-200 ease-in-out text-sm"
+              placeholder="Create a password"
+            />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             {validationErrors.password && (
               <p className="mt-1 text-xs text-red-600">
                 {validationErrors.password}
@@ -379,7 +424,11 @@ const Signup = () => {
             whileTap={{ scale: 0.98 }}
             type="submit"
             disabled={isLoading || !agreeToTerms || !isFormValid()}
+<<<<<<< HEAD
             className="w-full bg-black hover:bg-black/90 text-white py-2 rounded-md text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
+=======
+            className="w-full bg-gradient-to-r from-purple-600 to-blue-500 text-white py-2 rounded-md text-sm font-semibold shadow-md hover:shadow-lg transition-all duration-200 ease-in-out disabled:opacity-70 disabled:cursor-not-allowed"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
           >
             {isLoading ? (
               <div className="flex items-center justify-center">

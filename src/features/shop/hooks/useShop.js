@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { shopService } from "@/api/services/shop.service";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -8,6 +9,18 @@ export const useGetAllShops = () => {
     select: (data) => data.shops,
   });
 };
+=======
+import { shopService } from "@/api/services/shop.service"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
+
+export const useGetAllShops = () => {
+    return useQuery({
+        queryKey: ['shops'],
+        queryFn: () => shopService.getAllShops(),
+        select: (data) => data.shops
+    })
+}
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 export const useShopById = (id) => {
   return useQuery({
     queryKey: ["shop", id],
@@ -25,6 +38,7 @@ export const useShopBySellerId = (sellerId) => {
     cacheTime: 0,
     staleTime: 0,
     select: (data) => data.shop,
+<<<<<<< HEAD
   });
 };
 export const useCreateShopPost = () => {
@@ -57,3 +71,16 @@ export const useUpdateShopPost = () => {
     },
   });
 };
+=======
+  })
+}
+export const useCreateShopPost = () => {
+    const queryClient = useQueryClient();
+    return useMutation({
+      mutationFn:async (formData) => shopService.createShopPost(formData),
+            onSuccess: () => {
+              queryClient.invalidateQueries('shops');
+            },
+    })
+  }
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d

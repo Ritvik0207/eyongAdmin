@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import PropTypes from 'prop-types';
+=======
+import PropTypes from "prop-types";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import {
   FormControl,
   FormDescription,
@@ -6,13 +10,18 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+<<<<<<< HEAD
 } from '@/components/ui/form';
+=======
+} from "@/components/ui/form";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
+<<<<<<< HEAD
 } from '@/components/ui/select';
 import { useGetAllCategories } from '@/features/categories/hooks/useCategory';
 import { useGetSubcategoryByCategoryId } from '@/features/subcategories/hooks/useSubcategory';
@@ -22,11 +31,26 @@ import {
   useShopBySellerId,
 } from '@/features/shop/hooks/useShop';
 import useAuthenticationStore from '@/store/useAuthenticationStore';
+=======
+} from "@/components/ui/select";
+import { useGetAllCategories } from "@/features/categories/hooks/useCategory";
+import { useGetSubcategoryByCategoryId } from "@/features/subcategories/hooks/useSubcategory";
+import { useEffect, useState } from "react";
+import {
+  useGetAllShops,
+  useShopBySellerId,
+} from "@/features/shop/hooks/useShop";
+import useAuthenticationStore from "@/store/useAuthenticationStore";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
 export function Categorization({ form }) {
   const { user } = useAuthenticationStore();
   const sellerId = user?.id;
+<<<<<<< HEAD
   const isSuperAdmin = user?.role === 'Super_Admin';
+=======
+  const isSuperAdmin = user?.role === "Super_Admin";
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
   const { data: categories = [] } = useGetAllCategories();
 
   const [selectedCategory, setSelectedCategory] = useState(null);
@@ -46,6 +70,7 @@ export function Categorization({ form }) {
   const { data: shopOfSeller = [] } = useShopBySellerId(sellerId);
 
   return (
+<<<<<<< HEAD
     <div className='space-y-4'>
       <FormField
         control={form.control}
@@ -55,6 +80,15 @@ export function Categorization({ form }) {
             <FormLabel>
               Category<span className='text-red-500'>*</span>
             </FormLabel>
+=======
+    <div className="space-y-4">
+      <FormField
+        control={form.control}
+        name="category"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Category</FormLabel>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             <Select
               onValueChange={(value) => {
                 field.onChange(value);
@@ -64,7 +98,11 @@ export function Categorization({ form }) {
             >
               <FormControl>
                 <SelectTrigger>
+<<<<<<< HEAD
                   <SelectValue placeholder='Select a category' />
+=======
+                  <SelectValue placeholder="Select a category" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -84,18 +122,30 @@ export function Categorization({ form }) {
       />
       <FormField
         control={form.control}
+<<<<<<< HEAD
         name='subcategory'
+=======
+        name="subcategory"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
         render={({ field }) => (
           <FormItem>
             <FormLabel>Subcategory</FormLabel>
             <Select
               onValueChange={field.onChange}
+<<<<<<< HEAD
               defaultValue={field.value || ''}
+=======
+              defaultValue={field.value}
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
               disabled={!selectedCategory || isLoading}
             >
               <FormControl>
                 <SelectTrigger>
+<<<<<<< HEAD
                   <SelectValue placeholder='Select a subcategory' />
+=======
+                  <SelectValue placeholder="Select a subcategory" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
@@ -115,18 +165,29 @@ export function Categorization({ form }) {
       />
       <FormField
         control={form.control}
+<<<<<<< HEAD
         name='shop'
         render={({ field }) => (
           <FormItem>
             <FormLabel>
               Shop<span className='text-red-500'>*</span>
             </FormLabel>
+=======
+        name="shop"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Shop</FormLabel>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             {isSuperAdmin ? (
               // Shop Selection for Super Admin
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
+<<<<<<< HEAD
                     <SelectValue placeholder='Select a shop' />
+=======
+                    <SelectValue placeholder="Select a shop" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -142,7 +203,11 @@ export function Categorization({ form }) {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger>
+<<<<<<< HEAD
                     <SelectValue placeholder='Select a shop' />
+=======
+                    <SelectValue placeholder="Select a shop" />
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -155,7 +220,11 @@ export function Categorization({ form }) {
               </Select>
             )}
             <FormDescription>
+<<<<<<< HEAD
               {'Choose the shop for this product.'}
+=======
+              {"Choose the shop for this product."}
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             </FormDescription>
             <FormMessage />
           </FormItem>

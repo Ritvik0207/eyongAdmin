@@ -29,4 +29,8 @@ export const useDeleteCategory = () => {
     mutationKey: ["deleteCategory"],
     mutationFn: (categoryId) => categoryServices.deleteCategory(categoryId),
   });
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d

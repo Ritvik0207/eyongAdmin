@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 import PropTypes from "prop-types";
+=======
+import PropTypes from 'prop-types'
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 import {
   FormControl,
   FormDescription,
@@ -6,9 +10,15 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
+<<<<<<< HEAD
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+=======
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
 export function BasicDetails({ form }) {
   return (
@@ -18,9 +28,13 @@ export function BasicDetails({ form }) {
         name="name"
         render={({ field }) => (
           <FormItem>
+<<<<<<< HEAD
             <FormLabel>
               Product Name<span className="text-red-500">*</span>
             </FormLabel>
+=======
+            <FormLabel>Product Name</FormLabel>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             <FormControl>
               <Input placeholder="Enter product name" {...field} />
             </FormControl>
@@ -34,9 +48,13 @@ export function BasicDetails({ form }) {
         name="description"
         render={({ field }) => (
           <FormItem>
+<<<<<<< HEAD
             <FormLabel>
               Description<span className="text-red-500">*</span>
             </FormLabel>
+=======
+            <FormLabel>Description</FormLabel>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
             <FormControl>
               <Textarea
                 placeholder="Enter product description"
@@ -67,11 +85,21 @@ export function BasicDetails({ form }) {
         )}
       />
     </div>
+<<<<<<< HEAD
   );
+=======
+  )
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 }
 
 BasicDetails.propTypes = {
   form: PropTypes.shape({
     control: PropTypes.object.isRequired,
   }).isRequired,
+<<<<<<< HEAD
 };
+=======
+}
+
+  
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d

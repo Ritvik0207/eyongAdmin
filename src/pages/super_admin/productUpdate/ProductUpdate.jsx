@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
@@ -32,6 +33,39 @@ export function ProductUpdate() {
 
   const { data: product, isLoading, error } = useProductById(productId);
   const { mutate: updateProduct } = useUpdateProduct();
+=======
+import { useState, useEffect } from 'react'
+import { useParams, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { Button } from "@/components/ui/button"
+import { Form } from "@/components/ui/form"
+import { toast } from "@/hooks/use-toast"
+import { FormNavigation } from '../productCreate/_components/form-navigation'
+import { BasicDetails } from '../productCreate/_components/basic-details'
+import { Categorization } from '../productCreate/_components/categorization'
+import { Specifications } from '../productCreate/_components/specifications'
+import { TargetAudience } from '../productCreate/_components/target-audience'
+import { StatusVisibility } from '../productCreate/_components/status-visibility'
+import { SEO } from '../productCreate/_components/seo'
+import { ImageUpload } from '../productCreate/_components/image-upload'
+import { Variants } from '../productCreate/_components/variants'
+
+import { Loader } from '@/components/common/loader'
+import { useProductById, useUpdateProduct } from '@/features/products/hooks/useProducts'
+import { formSchema } from '@/constants'
+import { ROUTES } from '@/constants/routes'
+
+export function ProductUpdate() {
+  const { productId } = useParams()
+  const navigate = useNavigate()
+  const [currentStep, setCurrentStep] = useState('basic')
+  const [baseImage, setBaseImage] = useState(null)
+  const [variantImages, setVariantImages] = useState({})
+
+  const { data: product, isLoading, error } = useProductById(productId)
+  const { mutate: updateProduct } = useUpdateProduct()
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -63,7 +97,11 @@ export function ProductUpdate() {
       keywords: [],
       variants: [],
     },
+<<<<<<< HEAD
   });
+=======
+  })
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
   useEffect(() => {
     if (product) {
@@ -82,7 +120,11 @@ export function ProductUpdate() {
         metaTitle: product.metaTitle,
         metaDescription: product.metaDescription,
         keywords: product.keywords,
+<<<<<<< HEAD
         variants: product.variants.map((variant) => ({
+=======
+        variants: product.variants.map(variant => ({
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
           color: variant.color,
           pattern: variant.pattern,
           size: variant.size,
@@ -93,6 +135,7 @@ export function ProductUpdate() {
           certifications: variant.certifications,
           geographicIndication: variant.geographicIndication,
         })),
+<<<<<<< HEAD
       });
       setBaseImage(product.baseImage);
       setVariantImages(product.variants.map((variant) => variant.images));
@@ -116,20 +159,51 @@ export function ProductUpdate() {
       // Append base image
       if (baseImage && baseImage instanceof File) {
         formData.append('baseImage', baseImage);
+=======
+      })
+      setBaseImage(product.baseImage)
+      setVariantImages(product.variants.map(variant => variant.images))
+    }
+  }, [product, form])
+
+  async function onSubmit(values) {
+    try {
+      const formData = new FormData()
+      
+      // Append all form fields
+      Object.keys(values).forEach(key => {
+        if (key !== 'variants' && key !== 'specifications') {
+          formData.append(key, values[key])
+        }
+      })
+
+      // Append specifications
+      formData.append('specifications', JSON.stringify(values.specifications))
+
+      // Append base image
+      if (baseImage && baseImage instanceof File) {
+        formData.append('baseImage', baseImage)
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
       }
 
       // Append variants as JSON string
       const variantsWithImages = values.variants.map((variant, index) => ({
         ...variant,
         images: variantImages[index] || [],
+<<<<<<< HEAD
       }));
       formData.append('variants', JSON.stringify(variantsWithImages));
+=======
+      }))
+      formData.append('variants', JSON.stringify(variantsWithImages))
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
 
       // Append variant images
       variantImages.forEach((variantImageSet, variantIndex) => {
         variantImageSet.forEach((image, imageIndex) => {
           if (image instanceof File) {
             formData.append(
+<<<<<<< HEAD
               `variant_${Number.parseInt(variantIndex) + 1}`,
               image
             );
@@ -165,6 +239,41 @@ export function ProductUpdate() {
         description: 'Failed to update product. Please try again.',
         variant: 'destructive',
       });
+=======
+              `variant_${Number.parseInt(variantIndex)+1}`,
+              image
+            );
+          }
+        })
+      })
+
+      updateProduct({ productId, formData }, 
+        {
+            onSuccess: () => {
+                toast({
+                    title: "Product updated",
+                    description: "Your product has been successfully updated.",
+                  });
+                  navigate(ROUTES.PRODUCT.LIST)
+            },
+            onError: (error) => {
+              console.error('Product creation error:', error);
+              toast({
+                title: "Error",
+                description: error.response?.data?.message || "Failed to create product",
+                variant: "destructive",
+              });
+            },
+          }
+      )
+    } catch (error) {
+      console.error('Failed to update product:', error)
+      toast({
+        title: "Error",
+        description: "Failed to update product. Please try again.",
+        variant: "destructive",
+      })
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
     }
   }
 
@@ -175,6 +284,7 @@ export function ProductUpdate() {
     { id: 'audience', component: <TargetAudience form={form} /> },
     { id: 'status', component: <StatusVisibility form={form} /> },
     { id: 'seo', component: <SEO form={form} /> },
+<<<<<<< HEAD
     {
       id: 'baseImage',
       component: (
@@ -238,16 +348,76 @@ export function ProductUpdate() {
           <div className='flex justify-between mt-8'>
             {!isFirstStep && (
               <Button type='button' variant='outline' onClick={handlePrevious}>
+=======
+    { id: 'baseImage', component: <ImageUpload 
+        title="Base Image" 
+        description="Upload the main image for your product" 
+        images={baseImage} 
+        setImages={setBaseImage} 
+        multiple={false}
+      /> 
+    },
+    { id: 'variants', component: <Variants form={form} variantImages={variantImages} setVariantImages={
+      setVariantImages
+    //   (newImages, key) => {
+    //   setVariantImages(prev => {
+    //     return {
+    //       ...prev,
+    //       [key]: newImages,
+    //     }
+    //   })
+    // }
+    }/> },
+  ]
+
+  const currentStepIndex = steps.findIndex(step => step.id === currentStep)
+  const isLastStep = currentStepIndex === steps.length - 1
+  const isFirstStep = currentStepIndex === 0
+
+  const handleNext = () => {
+    if (!isLastStep) {
+      setCurrentStep(steps[currentStepIndex + 1].id)
+    }
+  }
+
+  const handlePrevious = () => {
+    if (!isFirstStep) {
+      setCurrentStep(steps[currentStepIndex - 1].id)
+    }
+  }
+
+  if (isLoading) return <Loader />
+  if (error) return <div>Error: {error.message}</div>
+
+  return (
+    <div className="container mx-auto py-6 px-4 sm:px-6 lg:px-8">
+      <h1 className="text-3xl font-bold mb-8">Update Product</h1>
+      <FormNavigation currentStep={currentStep} onStepChange={setCurrentStep} />
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+          {steps.find(step => step.id === currentStep)?.component}
+          <div className="flex justify-between mt-8">
+            {!isFirstStep && (
+              <Button type="button" variant="outline" onClick={handlePrevious}>
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 Previous
               </Button>
             )}
             {!isLastStep && (
+<<<<<<< HEAD
               <Button type='button' onClick={handleNext} className='ml-auto'>
+=======
+              <Button type="button" onClick={handleNext} className="ml-auto">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 Next
               </Button>
             )}
             {isLastStep && (
+<<<<<<< HEAD
               <Button type='submit' className='ml-auto'>
+=======
+              <Button type="submit" className="ml-auto">
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
                 Update Product
               </Button>
             )}
@@ -255,7 +425,15 @@ export function ProductUpdate() {
         </form>
       </Form>
     </div>
+<<<<<<< HEAD
   );
 }
 
 export default ProductUpdate;
+=======
+  )
+}
+
+export default ProductUpdate
+
+>>>>>>> 962cb4ccd6966cce08ab764263b03c0d3d9bc55d
