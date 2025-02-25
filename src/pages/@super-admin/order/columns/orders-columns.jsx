@@ -8,6 +8,17 @@ import { Phone } from 'lucide-react';
 
 export const orderColumns = [
   {
+    id: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => (
+      <Link to={ROUTES.ORDERS.getDetailsLink(row.original._id)}>
+        <Button variant='outline' size='sm'>
+          View
+        </Button>
+      </Link>
+    ),
+  },
+  {
     accessorKey: 'shipping_address.full_name',
     header: 'Customer Name',
     enableSorting: true,
@@ -74,16 +85,5 @@ export const orderColumns = [
     header: 'Order ID',
     cell: ({ row }) => <CopyableText text={row.original._id} />,
     enableSorting: true,
-  },
-  {
-    id: 'actions',
-    header: 'Actions',
-    cell: ({ row }) => (
-      <Link to={ROUTES.ORDERS.getDetailsLink(row.original._id)}>
-        <Button variant='outline' size='sm'>
-          View
-        </Button>
-      </Link>
-    ),
   },
 ];

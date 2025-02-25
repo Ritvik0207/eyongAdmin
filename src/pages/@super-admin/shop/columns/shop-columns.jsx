@@ -6,6 +6,17 @@ import CopyableText from '@/components/common/CopyableText';
 
 export const shopColumns = [
   {
+    id: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => (
+      <Link to={ROUTES.SHOP.getDetailsLink(row.original._id)}>
+        <Button variant='outline' size='sm' className='flex items-center gap-2'>
+          View
+        </Button>
+      </Link>
+    ),
+  },
+  {
     accessorKey: 'name',
     header: 'Shop Name',
   },
@@ -35,16 +46,5 @@ export const shopColumns = [
     accessorKey: '_id',
     header: 'Shop ID',
     cell: ({ row }) => <CopyableText text={row.original._id} />,
-  },
-  {
-    id: 'actions',
-    header: 'Actions',
-    cell: ({ row }) => (
-      <Link to={ROUTES.SHOP.getDetailsLink(row.original._id)}>
-        <Button variant='outline' size='sm' className='flex items-center gap-2'>
-          View
-        </Button>
-      </Link>
-    ),
   },
 ];

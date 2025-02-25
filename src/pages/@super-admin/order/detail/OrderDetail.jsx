@@ -142,6 +142,17 @@ export function OrderDetail() {
               <span className='text-muted-foreground'>Payment Method</span>
               <span className='font-medium'>{order?.payment_type}</span>
             </div>
+
+            {order?.status === ORDER_STATUS.CANCELLED && (
+              <div className='flex flex-col gap-2 md:flex-row justify-between items-center'>
+                <span className='text-muted-foreground'>
+                  Cancellation Reason
+                </span>
+                <span className='font-medium'>
+                  {order?.cancellation_reason}
+                </span>
+              </div>
+            )}
           </CardContent>
         </Card>
 

@@ -6,6 +6,17 @@ import { Phone } from 'lucide-react';
 
 export const customerColumns = [
   {
+    id: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => (
+      <Link to={ROUTES.CUSTOMERS.getDetailsLink(row.original._id)}>
+        <Button variant='outline' size='sm'>
+          View
+        </Button>
+      </Link>
+    ),
+  },
+  {
     accessorKey: 'userName',
     header: 'Name',
     enableSorting: true,
@@ -42,16 +53,5 @@ export const customerColumns = [
     header: 'Customer ID',
     cell: ({ row }) => <CopyableText text={row.original._id} />,
     enableSorting: true,
-  },
-  {
-    id: 'actions',
-    header: 'Actions',
-    cell: ({ row }) => (
-      <Link to={ROUTES.CUSTOMERS.getDetailsLink(row.original._id)}>
-        <Button variant='outline' size='sm'>
-          View
-        </Button>
-      </Link>
-    ),
   },
 ];

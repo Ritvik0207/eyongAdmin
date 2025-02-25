@@ -8,6 +8,17 @@ import { Phone } from 'lucide-react';
 
 export const paymentColumns = [
   {
+    accessorKey: 'actions',
+    header: 'Actions',
+    cell: ({ row }) => (
+      <Link to={ROUTES.PAYMENTS.getDetailsLink(row.original._id)}>
+        <Button variant='outline' size='sm'>
+          View
+        </Button>
+      </Link>
+    ),
+  },
+  {
     accessorKey: 'order.shipping_address.full_name',
     header: 'User Name',
   },
@@ -109,16 +120,5 @@ export const paymentColumns = [
     accessorKey: 'transactionId',
     header: 'Transaction ID',
     cell: ({ row }) => <CopyableText text={row.original.transactionId} />,
-  },
-  {
-    accessorKey: 'actions',
-    header: 'Actions',
-    cell: ({ row }) => (
-      <Link to={ROUTES.PAYMENTS.getDetailsLink(row.original._id)}>
-        <Button variant='outline' size='sm'>
-          View
-        </Button>
-      </Link>
-    ),
   },
 ];

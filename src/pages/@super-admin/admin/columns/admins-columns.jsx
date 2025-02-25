@@ -6,6 +6,16 @@ import { Link } from 'react-router-dom';
 
 export const adminColumns = [
   {
+    id: 'actions',
+    cell: ({ row }) => (
+      <Link to={ROUTES.ADMIN.getDetailsLink(row?.original?._id)}>
+        <Button variant='outline' size='sm'>
+          View
+        </Button>
+      </Link>
+    ),
+  },
+  {
     accessorKey: 'name',
     header: 'Name',
     enableSorting: true,
@@ -74,15 +84,5 @@ export const adminColumns = [
     header: 'ID',
     cell: ({ row }) => <CopyableText text={row.original._id} />,
     enableSorting: true,
-  },
-  {
-    id: 'actions',
-    cell: ({ row }) => (
-      <Link to={ROUTES.ADMIN.getDetailsLink(row?.original?._id)}>
-        <Button variant='outline' size='sm'>
-          View
-        </Button>
-      </Link>
-    ),
   },
 ];
