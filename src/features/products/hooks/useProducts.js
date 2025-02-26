@@ -1,9 +1,9 @@
-import { productService } from '@/api/services/product.service';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { productService } from "@/api/services/product.service";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
-export const useProducts = ({ filter = '' }) => {
+export const useProducts = ({ filter = "" }) => {
   return useQuery({
-    queryKey: ['products', filter],
+    queryKey: ["products", filter],
     queryFn: () => productService.getProducts({ filter }),
     select: (data) => data.products,
   });
@@ -32,7 +32,7 @@ export const useProducts = ({ filter = '' }) => {
  */
 export const useProductById = (id) => {
   return useQuery({
-    queryKey: ['product', id],
+    queryKey: ["product", id],
     queryFn: () => {
       return productService.getProductById(id);
     },
@@ -44,7 +44,7 @@ export const useProductById = (id) => {
 
 export const useProductByShopId = (shopId) => {
   return useQuery({
-    queryKey: ['product', shopId],
+    queryKey: ["product", shopId],
     queryFn: () => productService.getProductByShopId(shopId),
     enabled: !!shopId,
   });
@@ -52,7 +52,7 @@ export const useProductByShopId = (shopId) => {
 
 export const useProductBySellerId = (sellerId) => {
   return useQuery({
-    queryKey: ['product', sellerId],
+    queryKey: ["product", sellerId],
     queryFn: () => productService.getProductBySellerId(sellerId),
     select: (data) => data.products,
     enabled: !!sellerId,
@@ -64,7 +64,7 @@ export const useCreateProductPost = () => {
   return useMutation({
     mutationFn: (formData) => productService.createProductPost(formData),
     onSuccess: () => {
-      queryClient.invalidateQueries('products');
+      queryClient.invalidateQueries("products");
     },
   });
 };
@@ -72,9 +72,11 @@ export const useCreateProductPost = () => {
 export const useUpdateProduct = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (formData) => productService.updateProduct(formData),
+    mutationFn: ({ productId, formData }) => {
+      productService.updateProduct(productId, formData);
+    },
     onSuccess: () => {
-      queryClient.invalidateQueries('products');
+      queryClient.invalidateQueries("products");
     },
   });
 };
@@ -84,7 +86,7 @@ export const useDeleteProduct = () => {
   return useMutation({
     mutationFn: (id) => productService.deleteProduct(id),
     onSuccess: () => {
-      queryClient.invalidateQueries('products');
+      queryClient.invalidateQueries("products");
     },
   });
 };
